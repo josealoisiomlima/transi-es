@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animações</title>
+    <link rel="stylesheet" href="style.css" />
+
+
+    <style>
+      .item {
+        width: 100px;
+        height: 100px;
+      }
+
+
+      /* podemos pausar as animações com o mouse a qualquer momento com o hover */
+
+
+      .item:hover{
+        animation-play-state: paused;
+      }
+
+
+      /* criamos um nome para nossa animação, colocamos o tempo de duração e a forma que ela aparecerá na tela */
+
+
+      /* definição */
+
+
+      .animationFadeIn {
+        animation: fadeIn 2s linear;
+      }
+
+
+      /* keyframe descreve como o elemento animado deveria se renderizar a um tempo dado durante a sequência de animação */
+
+
+       @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+
+      .animationFadeOut {
+        opacity: 0;
+        animation: fadeIn 2s linear;
+        animation-direction: reverse;
+        animation-fill-mode: forwards;
+      }
+     
+      .animationFadeInFadeOut {
+        animation: fadeInFadeOut 1s linear infinite;
+      }
+
+
+       @keyframes fadeInFadeOut {
+        0% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.2;
+        }
+        100% {
+          opacity: 1;
+        }
+
+
+      }
+
+
+      .spinner {
+        border-radius: 50%;
+      }
+
+
+      @keyframes rotate {
+        from {transform: rotateZ(0deg);}
+        to {transform: rotateZ(360deg);}
+      }
+
+
+        .animationSpinner {
+          animation: rotate 2s linear infinite;
+        }
+          .animationSpinnerEase {
+          animation: rotate 2s ease infinite;
+        }
+
+
+        .animationSpinnerEaseOut {
+          animation: rotate 2s ease-out infinite;
+        }
+
+
+        .positionBox {
+          width: 100%;
+          height: 300px;
+          background-color: #444;
+          position: relative;
+        }
+
+
+         .animationPosition{
+          position: absolute;
+          animation: position 4s linear infinite;
+          animation-direction: alternate;
+        }  
+
+
+          @keyframes position {
+          0% {
+            top: 0;
+            left: 0;
+          }
+
+
+          35% {
+            top: 0;
+            left: calc(100% - 100px);
+          }
+
+
+          50% {
+            top: calc(100% - 100px);
+            left: calc(100% - 100px);
+          }
+
+
+          75% {
+            top: calc(100% - 100px);
+            left: 0;
+          }
+
+
+          100% {
+            top: 0;
+            left: 0;
+          }
+         
+        }  
+
+
+        /* para executar presisamos da pseudo classe after */
+
+
+       
+        .animationContent::after {
+          content: "";
+          animation: promocao 2s linear infinite;
+        }
+
+
+         @keyframes promocao {
+          0% {content: "Promoção";}
+          50% {content: "";}
+          60% {content: "Frete Grátis";}
+        }
+    </style>
+
+</head>
+<body>
+    <h1>Animações</h1>
+
+
+    <h2>Fade</h2>
+
+
+    <section>
+      <div class="blue item animationFadeIn">Azul</div>
+      <div class="green item animationFadeOut">Verde</div>
+      <div class="red item animationFadeInFadeOut">Vermelho</div>
+    </section>
+    <hr />
+
+
+    <h2>Spinners</h2>
+    <section>
+      <div class="spinner item blue animationSpinner">Linear</div>
+      <div class="spinner item green animationSpinnerEase">Ease</div>
+      <div class="spinner item red animationSpinnerEaseOut">Ease Out</div>
+    </section>
+
+
+    <hr>
+
+
+    <h2>Position</h2>
+     <section class="positionBox">
+      <div class="item yellow animationPosition">Amarelo</div>
+     
+    </section>
+
+
+     <hr>
+
+
+    <h2>Content</h2>
+     <section>
+      <div class="item red animationContent"></div>
+     
+    </section>
+  </body>
+</html>
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animações</title>
+    <link rel="stylesheet" href="style.css" />
+
+
+    <style>
+      .item {
+        width: 100px;
+        height: 100px;
+      }
+
+
+      .transitionBackground {
+        transition: background-color 2s;
+      }
+       
+      .transitionBackground:hover {
+        background-color: red;
+      }
+
+
+      .transitionSize {
+        transition: transform 0.2s;
+      }
+
+
+      .transitionSize:hover {
+        transform: scale(2);
+      }
+
+
+      .transitionRotate {
+        transition: transform 0.5s;
+      }
+
+
+      .transitionRotate:hover {
+        transform: rotateZ(360deg);
+      }
+
+
+      /* o segundo tempo se refere ao delay e pode ser usada em qualquer transition*/
+
+
+       .transitionDelay {
+        transition: width 1s 0.5s, heigth 2s;
+      }
+
+
+       .transitionDelay:hover {
+        width: 200px;
+        height: 200px;
+      }
+
+
+      .transitionCheckedbox {
+        width: 50px;
+        height: 50px;
+        transition: transform 0.5s;
+      }
+
+
+      .transitionCheckedbox:checked {
+        transform: rotateY(360deg);
+      }
+
+
+      .transitionRadio {
+        width: 50px;
+        height: 50px;
+        transition: transform 0.5s;
+      }
+
+
+      .transitionRadio:checked {
+        transform: scale(1.8);
+      }
+
+
+      .transitionText {
+        width: 100%;
+        height: 50px;
+        font-size: 18px;
+        text-align: center;
+        transition: transform 1s;
+      }
+
+
+      .transitionText:focus {
+        transform: scaleY(0.9) scaleX(0.7) rotateZ(90deg);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Transições</h1>
+
+
+    <h2>Hover</h2>
+
+
+    <section>
+      <div class="blue item transitionBackground">Azul</div>
+      <div class="yellow item transitionBackground">Amarelo</div>
+      <div class="green item transitionSize">Verde</div>
+      <div class="red item transitionRotate">Vermelho</div>
+    </section>
+    <hr />
+
+
+    <h2>Transition Delay</h2>
+    <section>
+      <div class="red item transitionDelay">Vermelho</div>
+    </section>
+    <hr />
+     
+     <h2>Checked</h2>
+    <section>
+      <input type="checkbox" class="transitionCheckedbox" />
+      <input type="radio" name="radio" class="transitionRadio" />
+      <input type="radio" name="radio" class="transitionRadio" />
+      </section>
+        <hr />
+     
+    <h2>Focus</h2>
+    <section>
+      <input type="text" class="transitionText" />
+     
+      </section>
+  </body>
+</html>
+
+
+
+CSS
+
+html, body {
+    font-family: sans-serif;
+    background-color: #333;
+    color: #eee;
+}
+
+
+h2 {
+    color: #155271;
+    font-size: 23px;
+}
+
+
+hr {
+    margin-top: 40px;
+    margin-bottom: 30px;
+    opacity: 0.2;
+}
+
+
+div {
+    text-align: center;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+section {
+    display: flex;
+    flex-direction: row;
+}
+
+
+.red {
+    background-color: red;
+}
+.blue {
+    background-color: blue;
+}
+.green {
+    background-color: green;
+}
+
+
+.yellow {
+    background-color: yellow;
+}
+
+
+    
+</body>
+</html>
